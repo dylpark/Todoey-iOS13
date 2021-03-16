@@ -28,9 +28,9 @@ class ToDoListViewController: UITableViewController {
         newItem.title = "Item 3"
         itemArray.append(newItem3)
         
-//        if let items = defaults.array(forKey: "ToDoListArray") as? [String] {
-//            itemArray = items
-//        }
+        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
+            itemArray = items
+        }
         
     }
 
@@ -49,9 +49,7 @@ class ToDoListViewController: UITableViewController {
         
         //Ternary Operator ==>
         // value = condition ? valueIfTrue : valueIfFalse
-        
         cell.accessoryType = item.done ? .checkmark : .none
-        
 //        if itemArray[indexPath.row].done == true {
 //            cell.accessoryType = .checkmark
 //        } else {
@@ -83,7 +81,9 @@ class ToDoListViewController: UITableViewController {
             newItem.title = textField.text!
             
             self.itemArray.append(newItem)
+            
             self.defaults.setValue(self.itemArray, forKey: "ToDoListArray")
+            
             self.tableView.reloadData()
         }
         

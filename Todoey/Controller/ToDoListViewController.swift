@@ -3,7 +3,7 @@
 //  Todoey
 //
 //  Created by Dylan Park on 13/03/2021.
-//  Copyright © 2019 App Brewery. All rights reserved.
+//  Copyright © 2021 App Brewery. All rights reserved.
 //
 
 import UIKit
@@ -47,11 +47,16 @@ class ToDoListViewController: UITableViewController {
         
         cell.textLabel?.text = item.title
         
-        if itemArray[indexPath.row].done == true {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
+        //Ternary Operator ==>
+        // value = condition ? valueIfTrue : valueIfFalse
+        
+        cell.accessoryType = item.done ? .checkmark : .none
+        
+//        if itemArray[indexPath.row].done == true {
+//            cell.accessoryType = .checkmark
+//        } else {
+//            cell.accessoryType = .none
+//        }
     
         return cell
     }

@@ -30,6 +30,8 @@ class ToDoListViewController: UITableViewController {
         newItem.title = "Item 3"
         itemArray.append(newItem3)
         
+        loadItems()
+        
 //        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
 //            itemArray = items
 //        }
@@ -67,7 +69,8 @@ class ToDoListViewController: UITableViewController {
         //Sets the done property to the opposite
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        tableView.reloadData()
+        saveItems()
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -93,8 +96,8 @@ class ToDoListViewController: UITableViewController {
                 print("error encoding item array, \(error)")
             }
             
-            
             self.tableView.reloadData()
+            self.saveItems()
         }
         
         alert.addTextField { (alertTextField) in
@@ -104,6 +107,31 @@ class ToDoListViewController: UITableViewController {
         
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK - Model Manipulation Methods
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("error encoding item array, \(error)")
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                itemArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                print("Error decoding item array, \(error)")
+            }
+        }
     }
     
     

@@ -18,18 +18,6 @@ class ToDoListViewController: UITableViewController {
         
         print(dataFilePath)
         
-        let newItem = Item()
-        newItem.title = "Item 1"
-        itemArray.append(newItem)
-        
-        let newItem2 = Item()
-        newItem.title = "Item 2"
-        itemArray.append(newItem2)
-        
-        let newItem3 = Item()
-        newItem.title = "Item 3"
-        itemArray.append(newItem3)
-        
         loadItems()
         
 //        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {

@@ -12,6 +12,7 @@
 		EB2BE503239524DC00FB933B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE502239524DC00FB933B /* Assets.xcassets */; };
 		EB2BE506239524DC00FB933B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE504239524DC00FB933B /* LaunchScreen.storyboard */; };
 		FC758DA625FC7E710031E99C /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC758DA525FC7E710031E99C /* ToDoListViewController.swift */; };
+		FC865A6526044AFD00EB9F2F /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC865A6426044AFD00EB9F2F /* CategoryViewController.swift */; };
 		FCB66E402602DCC5002EA985 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FCB66E3E2602DCC5002EA985 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		EB2BE505239524DC00FB933B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB2BE507239524DC00FB933B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC758DA525FC7E710031E99C /* ToDoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
+		FC865A6426044AFD00EB9F2F /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		FCB66E3F2602DCC5002EA985 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				FC758DA525FC7E710031E99C /* ToDoListViewController.swift */,
+				FC865A6426044AFD00EB9F2F /* CategoryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC865A6526044AFD00EB9F2F /* CategoryViewController.swift in Sources */,
 				FC758DA625FC7E710031E99C /* ToDoListViewController.swift in Sources */,
 				FCB66E402602DCC5002EA985 /* DataModel.xcdatamodeld in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,

@@ -17,9 +17,7 @@ class CategoryViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadCategories()
-                    
     }
     
     
@@ -67,25 +65,13 @@ class CategoryViewController: UITableViewController {
         } catch {
             print("Error saving category \(error)")
         }
-        
         self.tableView.reloadData()
     }
     
     func loadCategories() {
-        
         categories = realm.objects(Category.self)
-        
         tableView.reloadData()
     }
-        
-//        Core Data
-//        let request: NSFetchRequest<Category> = Category.fetchRequest()
-//
-//        do {
-//            categoryArray = try context.fetch(request)
-//        } catch {
-//            print("Error fetching data from context \(error)")
-//        }
   
     //MARK: - Add New Categories
     //Using Categories Entity

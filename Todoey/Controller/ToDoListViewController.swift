@@ -12,22 +12,16 @@ import RealmSwift
 class ToDoListViewController: UITableViewController {
     
     var toDoItems: Results<Item>?
-    
     let realm = try! Realm()
-    
     var selectedCategory: `Category`? {
         didSet {
             loadItems()
         }
     }
     
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-                
     }
     
 
@@ -43,14 +37,10 @@ class ToDoListViewController: UITableViewController {
         
         if let item = toDoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
-            
-            //Ternary Operator ==>
-            // value = condition ? valueIfTrue : valueIfFalse
             cell.accessoryType = item.done ? .checkmark : .none
         } else {
             cell.textLabel?.text = "No Items Added"
         }
-    
         return cell
     }
     
@@ -59,13 +49,16 @@ class ToDoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        context.delete(toDoItems[indexPath.row])
-//        toDoItems.remove(at: indexPath.row)
-        
-//        toDoItems?[indexPath.row].done = !itemArray[indexPath.row].done
-//
-//        saveItems()
-        
+        if let item = toDoItems?[indexPath.row] {
+            do {
+                try realm.write {
+                    item.done = !item.done
+                }
+            } catch {
+                print("Error saving done status, \(error)")
+            }
+        }
+        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -77,8 +70,8 @@ class ToDoListViewController: UITableViewController {
         var textField = UITextField()
         
         let alert = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
-        
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            
             
             if let currentCategory = self.selectedCategory {
                 do {
@@ -91,9 +84,9 @@ class ToDoListViewController: UITableViewController {
                     print("Error saving new items, \(error)")
                 }
             }
-            
             self.tableView.reloadData()
         }
+        
         
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new item"
@@ -107,25 +100,11 @@ class ToDoListViewController: UITableViewController {
     
     //MARK: - Model Manipulation Methods
     
-//    func saveItems() {
-//
-//        do {
-//            try context.save()
-//        } catch {
-//            print("Error saving context \(error)")
-//        }
-//        self.tableView.reloadData()
-//    }
-    
-    
     func loadItems() {
         
         toDoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
-        
         tableView.reloadData()
-
     }
-    
 }
         
 //        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)

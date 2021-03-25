@@ -119,23 +119,6 @@ class ToDoListViewController: SwipeTableViewController {
         }
     }
 }
-        
-//        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-//
-//        if let additionalPredicate = predicate {
-//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-//        } else {
-//            request.predicate = categoryPredicate
-//        }
-//
-////        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, predicate])
-////        request.predicate = compoundPredicate
-//
-//        do {
-//            toDoItems = try context.fetch(request)
-//        } catch {
-//            print("Error fetching data from context \(error)")
-//        }
 
 
 //MARK: - Search Bar Methods

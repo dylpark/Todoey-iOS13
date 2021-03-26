@@ -20,12 +20,44 @@ class ToDoListViewController: SwipeTableViewController {
         }
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        tableView.separatorStyle = .none
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let colourHex = selectedCategory?.colour {
+            
+            title = selectedCategory!.name
+            
+            guard let navBar = navigationController?.navigationBar else {fatalError("navigation controller does not exist.")}
+            
+            if let navBarColour = UIColor(hexString: colourHex) {
+            
+                navBar.barTintColor = navBarColour
+                navBar.tintColor = ContrastColorOf(navBarColour, returnFlat: true)
+                navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: ContrastColorOf(navBarColour, returnFlat: true)]
+                
+                searchBar.barTintColor = navBarColour
+            }
+        }
+    }
 
+//    if let colorHex = selectedCategory?.color {
+//        guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller does not exists.")}
+//        if let bgColor = UIColor(hexString: colorHex) {
+//            navBar.backgroundColor = bgColor
+//            navBar.standardAppearance.backgroundColor = bgColor
+//            navBar.scrollEdgeAppearance?.backgroundColor = bgColor
+//            navBar.scrollEdgeAppearance?.largeTitleTextAttributes = [.foregroundColor: ContrastColorOf(bgColor, returnFlat: true)]
+//            navBar.standardAppearance.largeTitleTextAttributes = [.foregroundColor: ContrastColorOf(bgColor, returnFlat: true)]
+//        }
+//    }
+    
     //MARK: - TableView Data Source Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
